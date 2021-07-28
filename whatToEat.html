@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>今天吃甚麼</title>
+	<style type="text/css" rel="stylesheet">
+		.box{
+			height:100px;width:100px;
+			opacity:0.8;
+			background-color:red;border-radius:30px;box-shadow:10px 0px 5px #6C6C6C;
+			transform:translate(100px,100px) rotate(45deg);
+		}
+		.title{
+			font-size:50px;
+			background-color:grey;
+			font-weight:bold;
+		}
+		.text{
+			font-size:20px;
+			font-weight:bold;
+			margin-top:30px;
+		}
+		body {
+			 background-image:url("imgs/food.png");
+			 background-size: cover;
+			 background-repeat:no-repeat;
+			 text-align:center;
+		}
+
+		.box2{
+			 margin-top:420px;
+			 font-size:20px;font-weight:bold;background-color:grey;
+			 bottom: 0px;
+			 text-align:center;
+		}
+		.ans{
+			font-size:30px;font-weight:bold;margin-top:30px;
+		}
+		
+		.button{
+			margin-top:30px;
+			font-size:20px;
+		}
+		.hide{display:none;
+		}
+	</style>
+	<script  type="text/javascript">
+		var times=0;
+		
+		function showans(){
+			var a=document.getElementById("ans");
+			a.classList.toggle("hide");
+			var b=document.getElementById("but");
+			if(times==0){
+				if(a.innerHTML=="打名子啦娘泡"){
+					b.innerHTML="抱歉";
+				}
+				else{
+					b.innerHTML="點此收回結果";
+				}
+				
+				times=1;
+			}
+			else{
+				b.innerHTML="點此查看結果";
+				times=0;
+			}
+		}
+	</script>
+</head>
+<body>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+	<div class="title"  align="center">
+		今天吃甚麼?
+	</div>
+	<div class="text"  align="center">
+		還在想今天要吃甚麼嗎?
+	</div>
+	<div class="text"  align="center">
+		這個酷網站將會告訴你該吃什麼!
+	</div>
+	<div id="app">
+		<div class="text"  align="center">
+			請在這裡輸入你的名子 
+		</div>
+		<div class="text"  align="center">
+			系統將會以大數據及人工智慧分析今天吃甚麼最好
+		</div>
+		<input type="text" v-model="message" class="text">
+		<div>
+
+			<button id="but"  class="button" onclick="showans()">點此查看結果</button>
+		</div>
+		<div id="ans" class="hide ans">{{clickbutton()}}</div>		
+	</div>
+		<div class="box2">此網站由 學店資工仔製作</div>
+
+	
+	<script> 
+	
+		var app = new Vue({
+			el:'#app',
+			data:{
+				message:"",
+			},
+			methods:{
+				clickbutton(){
+					if(this.message==""){
+						var b=document.getElementById("but");
+						b.innerHTML="抱歉";
+						return "打名子啦娘泡";
+					}
+					return this.message+" 今天適合吃屎";
+				}
+			}
+		});
+	</script>
+</body>
+</html>
